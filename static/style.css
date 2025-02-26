@@ -32,16 +32,25 @@
 body {
     min-height: 100vh;
     font-family: "JetBrains Mono", monospace;
+    font-size: var(--body);
+    font-weight: 700;
+    text-transform: capitalize;
 }
 
 button {
     display: block;
     font-size: inherit;
     font-family: inherit;
+    font-weight: inherit;
+    text-transform: uppercase;
 }
 
 fieldset {
     border: none;
+}
+
+h1 {
+    font-size: var(--heading);
 }
 
 img, svg {
@@ -59,6 +68,15 @@ label {
     display: block;
 }
 
+output {
+    font-size: var(--output);
+}
+
 #password:empty::after {
     content: "P4$5W0rD!";
+    font-size: inherit;
+}
+
+#strength-container {
+    text-transform: uppercase;
 }
