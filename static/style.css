@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../assets/fonts/JetBrainsMono-VariableFont_wght.ttf") format("truetype");
+}
+
+:root {
+    /* Colours */
+    --very-dark-grey: hsl(248 15% 11%);
+    --dark-grey: hsl(248 10% 15%);
+    --grey: hsl(251 9% 53%);
+    --almost-white: hsl(252 11% 91%);
+    --neon-green: hsl(127 100% 82%);
+    --red: hsl(0° 91% 63%);
+    --orange: hsl(13 95% 66%);
+    --yellow: hsl(42 91% 68%);
+
+    /* Font sizes */
+    --heading: clamp(1rem, 0.5229rem + 2.0356vw, 1.5rem);
+    --output: clamp(1.5rem, 1.0229rem + 2.0356vw, 2rem);
+    --body: clamp(1rem, 0.8807rem + 0.5089vw, 1.125rem);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+  
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "JetBrains Mono", monospace;
+}
+
+button {
+    display: block;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+fieldset {
+    border: none;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+label {
+    display: block;
+}
+
+#password:empty::after {
+    content: "P4$5W0rD!";
+}
