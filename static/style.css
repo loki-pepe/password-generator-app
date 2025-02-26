@@ -9,10 +9,15 @@
     --dark-grey: hsl(248 10% 15%);
     --grey: hsl(251 9% 53%);
     --almost-white: hsl(252 11% 91%);
+    --white: hsl(0 0% 100%);
+
     --neon-green: hsl(127 100% 82%);
     --red: hsl(0° 91% 63%);
     --orange: hsl(13 95% 66%);
     --yellow: hsl(42 91% 68%);
+
+    /* Background */
+    --linear: linear-gradient(hsl(247 16% 9%), hsl(255 22% 4%));
 
     /* Font sizes */
     --heading: clamp(1rem, 0.5229rem + 2.0356vw, 1.5rem);
@@ -35,6 +40,8 @@ body {
     font-size: var(--body);
     font-weight: 700;
     text-transform: capitalize;
+    background: var(--linear);
+    color: var(--almost-white);
 }
 
 button {
@@ -45,12 +52,57 @@ button {
     text-transform: uppercase;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+#char-length-output {
+    color: var(--neon-green);
+}
+
+#copy {
+    background-color: transparent;
+    border: none;
+}
+
+#copy svg {
+    fill: var(--neon-green);
+}
+
+#copy:hover svg {
+    fill: var(--white);
+}
+
 fieldset {
     border: none;
 }
 
+.form-window {
+    background-color: var(--dark-grey);
+}
+
+#generate {
+    color: var(--dark-grey);
+    background-color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+}
+
+#generate svg {
+    fill: var(--dark-grey);
+}
+
+#generate:hover {
+    color: var(--neon-green);
+    background-color: transparent;
+}
+
+#generate:hover svg {
+    fill: var(--neon-green);
+}
+
 h1 {
     font-size: var(--heading);
+    color: var(--grey);
 }
 
 img, svg {
@@ -68,6 +120,10 @@ label {
     display: block;
 }
 
+label[for="strength"] {
+    color: var(--grey);
+}
+
 output {
     font-size: var(--output);
 }
@@ -75,8 +131,11 @@ output {
 #password:empty::after {
     content: "P4$5W0rD!";
     font-size: inherit;
+    color: var(--almost-white);
+    opacity: 25%;
 }
 
 #strength-container {
     text-transform: uppercase;
+    background-color: var(--very-dark-grey);
 }
