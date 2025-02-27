@@ -38,6 +38,10 @@
     /* Sizing */
     --main-width: clamp(320px, 100%, 540px);
     --checkbox-size: 1.25rem;
+    --range-track-height: 0.5rem;
+    --range-thumb-size: 1.75rem;
+    --gauge-height: 1.75rem;
+    --gauge-width: 0.625rem;
 
     /* Padding */
     --inline-padding-form: clamp(16px, 0.0458rem + 4.0712vw, 32px);
@@ -45,6 +49,7 @@
     --block-padding-password: clamp(16.5px, 0.912rem + 0.5089vw, 18.5px);
     --padding-strength: clamp(14px, 0.4874rem + 1.6539vw, 20.5px) var(--inline-padding-form);
     --padding-generate: clamp(15.5px, 0.76rem + 0.8906vw, 19px);
+    --padding-body: 16px;
 
     /* Margin */
     --margin-block-options: 32px;
@@ -71,7 +76,7 @@ body {
     text-transform: capitalize;
     background: var(--linear);
     color: var(--almost-white);
-    padding-inline: 16px;
+    padding-inline: var(--padding-body);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,7 +103,7 @@ button:hover {
 #char-length-container {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: auto 28px;
+    grid-template-rows: auto var(--range-thumb-size);
     justify-content: space-between;
     align-items: center;
     row-gap: var(--gap-char-length);
@@ -147,8 +152,8 @@ form {
 }
 
 .gauge-unit {
-    height: 28px;
-    width: 10px;
+    height: var(--gauge-height);
+    width: var(--gauge-width);
     border: var(--border) var(--almost-white);
 }
 
@@ -221,6 +226,37 @@ input[type="checkbox"] + label {
 
 input[type="checkbox"] + label:hover {
     cursor: pointer;
+}
+
+input[type="range"] {
+    appearance: none;
+    height: var(--range-track-height);
+    background-color: var(--very-dark-grey);
+}
+
+input[type="range"]::-moz-range-thumb {
+    background-color: var(--almost-white);
+    border-radius: 50%;
+    border: none;
+    height: var(--range-thumb-size);
+    width: var(--range-thumb-size);
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: var(--almost-white);
+    border-radius: 50%;
+    border: none;
+    height: var(--range-thumb-size);
+    width: var(--range-thumb-size);
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+    background-color: var(--very-dark-grey);
+    border: var(--border) var(--neon-green);
+}
+input[type="range"]:hover::-webkit-slider-thumb {
+    background-color: var(--very-dark-grey);
+    border: var(--border) var(--neon-green);
 }
 
 label {
