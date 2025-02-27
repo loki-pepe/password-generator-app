@@ -23,6 +23,7 @@
     --heading: clamp(1rem, 0.5229rem + 2.0356vw, 1.5rem);
     --output: clamp(1.5rem, 1.0229rem + 2.0356vw, 2rem);
     --body: clamp(1rem, 0.8807rem + 0.5089vw, 1.125rem);
+    --strength: clamp(1.125rem, 0.7672rem + 1.5267vw, 1.5rem);
 
     /* Gaps */
     --gap-main: clamp(16px, 0.1054rem + 3.8168vw, 31px);
@@ -30,9 +31,23 @@
     --gap-options: clamp(16px, 0.7615rem + 1.0178vw, 20px);
     --gap-checkbox: clamp(20px, 1.0115rem + 1.0178vw, 24px);
     --gap-generate: clamp(16px, 0.5229rem + 2.0356vw, 24px);
+    --gap-strength: 16px;
+    --gap-gauge: 8px;
+    --gap-char-length: clamp(8px, 0.0229rem + 2.0356vw, 16px);
 
     /* Sizing */
     --main-width: clamp(320px, 100%, 540px);
+
+    /* Padding */
+    --inline-padding-form: clamp(16px, 0.0458rem + 4.0712vw, 32px);
+    --block-padding-form: clamp(16px, 0.5229rem + 2.0356vw, 24px) clamp(16px, 0.0458rem + 4.0712vw, 32px);
+    --block-padding-password: clamp(16.5px, 0.912rem + 0.5089vw, 18.5px);
+    --padding-strength: clamp(14px, 0.4874rem + 1.6539vw, 20.5px) var(--inline-padding-form);
+    --padding-generate: clamp(15.5px, 0.76rem + 0.8906vw, 19px);
+
+    /* Margin */
+    --margin-block-options: 32px;
+    --margin-top-generate: clamp(16px, 0.0458rem + 4.0712vw, 32px);
 }
 
 *, *::before, *::after {
@@ -79,8 +94,10 @@ button:hover {
 #char-length-container {
     display: grid;
     grid-template-columns: auto auto;
+    grid-template-rows: auto 28px;
     justify-content: space-between;
     align-items: center;
+    row-gap: var(--gap-char-length);
 }
 
 #char-length-output {
@@ -105,16 +122,30 @@ fieldset {
     display: flex;
     flex-direction: column;
     row-gap: var(--gap-options);
+    margin-block: var(--margin-block-options);
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-form)
+    row-gap: var(--gap-form)
 }
 
 .form-window {
     background-color: var(--dark-grey);
+    padding-inline: var(--inline-padding-form);
+    padding-block: var(--block-padding-form);
+}
+
+#gauge {
+    display: flex;
+    column-gap: var(--gap-gauge);
+}
+
+.gauge-unit {
+    height: 28px;
+    width: 10px;
+    border: 2px solid var(--almost-white);
 }
 
 #generate {
@@ -126,6 +157,8 @@ form {
     align-items: center;
     column-gap: var(--gap-generate);
     width: 100%;
+    padding: var(--padding-generate);
+    margin-block-start: var(--margin-top-generate);
 }
 
 #generate svg {
@@ -195,11 +228,18 @@ output {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    row-gap: 8px;
+    padding-block: var(--block-padding-password);
+}
+
+#strength {
+    font-size: var(--strength);
 }
 
 #strength-container {
     text-transform: uppercase;
     background-color: var(--very-dark-grey);
     display: flex;
+    align-items: center;
+    column-gap: var(--gap-strength);
+    padding: var(--padding-strength);
 }
