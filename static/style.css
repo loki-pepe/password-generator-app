@@ -128,6 +128,10 @@ output {
     font-size: var(--output);
 }
 
+#password {
+    text-transform: none;
+}
+
 #password:empty::after {
     content: "P4$5W0rD!";
     font-size: inherit;
