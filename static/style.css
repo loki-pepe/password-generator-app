@@ -37,6 +37,7 @@
 
     /* Sizing */
     --main-width: clamp(320px, 100%, 540px);
+    --checkbox-size: 1.25rem;
 
     /* Padding */
     --inline-padding-form: clamp(16px, 0.0458rem + 4.0712vw, 32px);
@@ -48,6 +49,9 @@
     /* Margin */
     --margin-block-options: 32px;
     --margin-top-generate: clamp(16px, 0.0458rem + 4.0712vw, 32px);
+
+    /* Border */
+    --border: 2px solid;
 }
 
 *, *::before, *::after {
@@ -145,13 +149,13 @@ form {
 .gauge-unit {
     height: 28px;
     width: 10px;
-    border: 2px solid var(--almost-white);
+    border: var(--border) var(--almost-white);
 }
 
 #generate {
     color: var(--dark-grey);
     background-color: var(--neon-green);
-    border: 2px solid var(--neon-green);
+    border: var(--border) var(--neon-green);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,6 +193,34 @@ input {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    height: var(--checkbox-size);
+    width: var(--checkbox-size);
+    border: var(--border) var(--almost-white);
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--neon-green);
+}
+
+input[type="checkbox"]:checked {
+    border: none;
+    background: center no-repeat url("../assets/images/icon-check.svg"), var(--neon-green);
+}
+
+input[type="checkbox"] + label {
+    user-select: none;
+}
+
+input[type="checkbox"] + label:hover {
+    cursor: pointer;
 }
 
 label {
