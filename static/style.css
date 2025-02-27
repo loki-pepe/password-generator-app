@@ -23,6 +23,16 @@
     --heading: clamp(1rem, 0.5229rem + 2.0356vw, 1.5rem);
     --output: clamp(1.5rem, 1.0229rem + 2.0356vw, 2rem);
     --body: clamp(1rem, 0.8807rem + 0.5089vw, 1.125rem);
+
+    /* Gaps */
+    --gap-main: clamp(16px, 0.1054rem + 3.8168vw, 31px);
+    --gap-form: clamp(16px, 0.5229rem + 2.0356vw, 24px);
+    --gap-options: clamp(16px, 0.7615rem + 1.0178vw, 20px);
+    --gap-checkbox: clamp(20px, 1.0115rem + 1.0178vw, 24px);
+    --gap-generate: clamp(16px, 0.5229rem + 2.0356vw, 24px);
+
+    /* Sizing */
+    --main-width: clamp(320px, 100%, 540px);
 }
 
 *, *::before, *::after {
@@ -42,6 +52,12 @@ body {
     text-transform: capitalize;
     background: var(--linear);
     color: var(--almost-white);
+    padding-inline: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-main);
 }
 
 button {
@@ -54,6 +70,17 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+#char-length {
+    grid-column: 1 / -1;
+}
+
+#char-length-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #char-length-output {
@@ -75,6 +102,15 @@ button:hover {
 
 fieldset {
     border: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap-options);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-form)
 }
 
 .form-window {
@@ -85,6 +121,11 @@ fieldset {
     color: var(--dark-grey);
     background-color: var(--neon-green);
     border: 2px solid var(--neon-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--gap-generate);
+    width: 100%;
 }
 
 #generate svg {
@@ -103,6 +144,7 @@ fieldset {
 h1 {
     font-size: var(--heading);
     color: var(--grey);
+    text-align: center;
 }
 
 img, svg {
@@ -122,6 +164,16 @@ label {
 
 label[for="strength"] {
     color: var(--grey);
+    flex: 1 0 auto;
+}
+
+main {
+    width: var(--main-width);
+}
+
+.option {
+    display: flex;
+    column-gap: var(--gap-checkbox);
 }
 
 output {
@@ -139,7 +191,15 @@ output {
     opacity: 25%;
 }
 
+#password-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 8px;
+}
+
 #strength-container {
     text-transform: uppercase;
     background-color: var(--very-dark-grey);
+    display: flex;
 }
