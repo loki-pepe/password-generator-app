@@ -12,7 +12,7 @@
     --white: hsl(0 0% 100%);
 
     --neon-green: hsl(127 100% 82%);
-    --red: hsl(0° 91% 63%);
+    --red: hsl(0 91% 63%);
     --orange: hsl(13 95% 66%);
     --yellow: hsl(42 91% 68%);
 
@@ -36,7 +36,7 @@
     --gap-char-length: clamp(8px, 0.0229rem + 2.0356vw, 16px);
 
     /* Sizing */
-    --main-width: clamp(320px, 100%, 540px);
+    --main-width: clamp(320px, 100%, 33.75rem);
     --checkbox-size: 1.25rem;
     --range-track-height: 0.5rem;
     --range-thumb-size: 1.75rem;
@@ -155,6 +155,26 @@ form {
     height: var(--gauge-height);
     width: var(--gauge-width);
     border: var(--border) var(--almost-white);
+}
+
+#gauge.too-weak .gauge-unit:nth-child(1) {
+    border: none;
+    background-color: var(--red);
+}
+
+#gauge.weak .gauge-unit:nth-child(-n + 2) {
+    border: none;
+    background-color: var(--orange);
+}
+
+#gauge.medium .gauge-unit:nth-child(-n + 3) {
+    border: none;
+    background-color: var(--yellow);
+}
+
+#gauge.strong .gauge-unit {
+    border: none;
+    background-color: var(--neon-green);
 }
 
 #generate {
