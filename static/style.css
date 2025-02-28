@@ -34,6 +34,7 @@
     --gap-strength: 16px;
     --gap-gauge: 8px;
     --gap-char-length: clamp(8px, 0.0229rem + 2.0356vw, 16px);
+    --gap-copy: clamp(8px, 0.0229rem + 2.0356vw, 16px);
 
     /* Sizing */
     --main-width: clamp(320px, 100%, 33.75rem);
@@ -116,6 +117,14 @@ button:hover {
 #copy {
     background-color: transparent;
     border: none;
+    display: flex;
+    column-gap: var(--gap-copy);
+}
+
+#copy.copied::before {
+    content: "COPIED";
+    color: var(--neon-green);
+    transition: opacity 2s ease-out;
 }
 
 #copy svg {
