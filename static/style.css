@@ -258,9 +258,22 @@ input[type="checkbox"] + label:hover {
 }
 
 input[type="range"] {
+    --range-background: var(--very-dark-grey);
+    --range-progress: var(--neon-green);
+
     appearance: none;
     height: var(--range-track-height);
-    background-color: var(--very-dark-grey);
+    background-color: var(--range-background);
+}
+
+input[type="range"].empty {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+input[type="range"].full {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 input[type="range"]::-moz-range-thumb {
