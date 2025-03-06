@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function passwordStrength(length, characterRange) {
         let entropy = passwordEntropy(length, characterRange);
-        console.log(entropy);
+
         if (entropy < 36) return 'too-weak';
         if (entropy < 60) return 'weak';
         if (entropy < 120) return 'medium';
