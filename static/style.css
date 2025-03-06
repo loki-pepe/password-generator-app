@@ -343,6 +343,9 @@ output {
 
 #strength {
     font-size: var(--strength);
+    height: calc(1.33333 * var(--strength)); /* Popravi */
+    display: flex;
+    align-items: center;
 }
 
 #strength-container {
