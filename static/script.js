@@ -1,18 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const FORM = document.querySelector('form');
-    const PASSWORD_OUTPUT = document.querySelector('#password');
     const CHAR_LENGTH_RANGE = document.querySelector('#char-length');
     const CHAR_LENGTH_OUTPUT = document.querySelector('#char-length-output');
+    const COPY_BUTTON = document.querySelector('#copy');
+    const FORM = document.querySelector('form');
+    const PASSWORD_OUTPUT = document.querySelector('#password');
     const STRENGTH_OUTPUT = document.querySelector('#strength');
     const STRENGTH_GAUGE = document.querySelector('#gauge');
 
 
     handleRangeChange(CHAR_LENGTH_RANGE, CHAR_LENGTH_OUTPUT);
     
-    FORM.addEventListener('submit', handleSubmit);
     CHAR_LENGTH_RANGE.addEventListener('input', () => handleRangeChange(CHAR_LENGTH_RANGE, CHAR_LENGTH_OUTPUT));
+    COPY_BUTTON.addEventListener('click', handleCopy)
+    FORM.addEventListener('submit', handleSubmit);
 
+
+    function flashElementClass(element, className, delay) {
+        element.classList.add(className);
+        setTimeout(() => {
+            element.classList.remove(className)
+        }, delay);
+    }
 
     function generatePassword(length, options, charactersObject) {
         let characters = stringFromObjectValues(charactersObject, ...options);
@@ -61,6 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
         strength = passwordStrength(LENGTH, stringFromObjectValues(CHARACTERS_OBJECT, ...OPTIONS).length);
 
         return {password, strength};
+    }
+
+    function handleCopy() {
+        navigator.clipboard.writeText(PASSWORD_OUTPUT.value).then(
+            () => flashElementClass(COPY_BUTTON, 'copied', 3000)
+        );
     }
 
     function handleRangeChange(range, output) {
