@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const PASSWORD_OUTPUT = document.querySelector('#password');
     const CHAR_LENGTH_RANGE = document.querySelector('#char-length');
     const CHAR_LENGTH_OUTPUT = document.querySelector('#char-length-output');
-    const STRENGTH_GAUGE = document.querySelector('#gauge')
+    const STRENGTH_OUTPUT = document.querySelector('#strength');
+    const STRENGTH_GAUGE = document.querySelector('#gauge');
 
 
     handleRangeChange(CHAR_LENGTH_RANGE, CHAR_LENGTH_OUTPUT);
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const DATA = Object.fromEntries(new FormData(e.target))
         let {password, strength} = getNewPassword(DATA);
         PASSWORD_OUTPUT.value = password;
-        STRENGTH_GAUGE.className = strength;
+        setPasswordStrength(strength);
     }
 
     function passwordEntropy(length, characterRange) {
@@ -94,6 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function randomItem(iterable) {
         return iterable[Math.floor(Math.random() * iterable.length)];
+    }
+
+    function setPasswordStrength(strength) {
+        STRENGTH_GAUGE.classList = strength;
+        STRENGTH_OUTPUT.value = strength.replace('-', ' ');
     }
 
     function stringFromObjectValues(obj, ...keys) {
