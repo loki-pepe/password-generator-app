@@ -343,7 +343,7 @@ output {
 
 #strength {
     font-size: var(--strength);
-    height: calc(1.33333 * var(--strength)); /* Popravi */
+    height: calc(1.33333 * var(--strength));
     display: flex;
     align-items: center;
 }
