@@ -6,12 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const CHAR_LENGTH_OUTPUT = document.querySelector('#char-length-output');
     const STRENGTH_GAUGE = document.querySelector('#gauge')
 
-    const CHARACTERS_OBJECT = {
-        uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        lowercase: 'abcdefghijklmnopqrstuvwxyz',
-        numbers: '0123456789',
-        symbols: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
-    }
 
     handleRangeChange(CHAR_LENGTH_RANGE, CHAR_LENGTH_OUTPUT);
     
@@ -20,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function generatePassword(length, options, charactersObject) {
-        let characters = stringFromObjectItems(charactersObject, ...options);
+        let characters = stringFromObjectValues(charactersObject, ...options);
         let password = '';
         let usedOptions = [];
 
@@ -41,19 +35,29 @@ document.addEventListener('DOMContentLoaded', () => {
         return password;
     }
 
-    function getNewPassword(data, charactersObject) {
+    function getNewPassword(data) {
         const LENGTH = parseInt(data['char-length']);
         if (LENGTH < 1) return '';
         
         const OPTIONS = Object.keys(data).filter(option => option !== 'char-length');
         if (OPTIONS.length === 0) return '';
 
+        const CHARACTERS_OBJECT = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+        }
+
         while (OPTIONS.length > LENGTH) {
             let randomIndex = Math.floor(Math.random() * OPTIONS.length);
             OPTIONS.splice(randomIndex, 1);
         }
         
-        return generatePassword(LENGTH, OPTIONS, charactersObject);
+        password = generatePassword(LENGTH, OPTIONS, CHARACTERS_OBJECT);
+        strength = passwordStrength(LENGTH, stringFromObjectValues(CHARACTERS_OBJECT, ...OPTIONS).length);
+
+        return {password, strength};
     }
 
     function handleRangeChange(range, output) {
@@ -64,16 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit(e) {
         e.preventDefault();
         const DATA = Object.fromEntries(new FormData(e.target))
-        let password = getNewPassword(DATA, CHARACTERS_OBJECT);
+        let {password, strength} = getNewPassword(DATA);
         PASSWORD_OUTPUT.value = password;
-        STRENGTH_GAUGE.className = passwordStrength(
-            password,
-            parseInt(CHAR_LENGTH_RANGE.max),
-            stringFromObjectItems(CHARACTERS_OBJECT).length
-        );
+        STRENGTH_GAUGE.className = strength;
     }
 
-    function passwordStrength(password, maxLength, possibleCharCount) {
+    function passwordStrength(length, possibleCharCount) {
         /**/
         return 'weak';
     }
@@ -86,17 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return iterable[Math.floor(Math.random() * iterable.length)];
     }
 
-    function stringFromObjectItems(obj, ...items) {
+    function stringFromObjectValues(obj, ...keys) {
         let str = '';
 
-        if (items.length) {
-            for (let item of items) {
-                str = str + obj[item];
-            }
-        } else {
-            for (let key in obj) {
+        if (keys.length) {
+            for (let key of keys) {
                 str = str + obj[key];
             }
+        } else {
+            str = Object.values(obj).join('');
         }
 
         return str;
