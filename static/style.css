@@ -348,6 +348,10 @@ output {
     align-items: center;
 }
 
+#strength:has(+ #gauge.too-weak)::after {
+    content: "!";
+}
+
 #strength-container {
     text-transform: uppercase;
     background-color: var(--very-dark-grey);
