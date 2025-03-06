@@ -37,10 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getNewPassword(data) {
         const LENGTH = parseInt(data['char-length']);
-        if (LENGTH < 1) return '';
-        
         const OPTIONS = Object.keys(data).filter(option => option !== 'char-length');
-        if (OPTIONS.length === 0) return '';
+
+        if (LENGTH < 1 || OPTIONS.length === 0) return {
+            password: '',
+            strength: '',
+        };
 
         const CHARACTERS_OBJECT = {
             uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function passwordStrength(length, possibleCharCount) {
-        /**/
+        if (length)
         return 'weak';
     }
 
