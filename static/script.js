@@ -75,9 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
         STRENGTH_GAUGE.className = strength;
     }
 
-    function passwordStrength(length, possibleCharCount) {
-        if (length)
-        return 'weak';
+    function passwordEntropy(length, characterRange) {
+        return Math.log(characterRange) / Math.log(2) * length;
+    }
+
+    function passwordStrength(length, characterRange) {
+        let entropy = passwordEntropy(length, characterRange);
+        console.log(entropy);
+        if (entropy < 36) return 'too-weak';
+        if (entropy < 60) return 'weak';
+        if (entropy < 120) return 'medium';
+        return 'strong';
     }
 
     function percentage(value, total) {
