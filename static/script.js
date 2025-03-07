@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function flashElementClass(element, className, delay) {
         element.classList.add(className);
         setTimeout(() => {
-            element.classList.remove(className)
+            element.classList.remove(className);
         }, delay);
     }
 
