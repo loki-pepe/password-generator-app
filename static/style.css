@@ -48,6 +48,7 @@
     --gauge-height: 1.75rem;
     --gauge-width: 0.625rem;
     --copy-button-height: clamp(1.25rem, 1.0115rem + 1.0178vw, 1.5rem);
+    --copied-width: clamp(3.71875rem, 3.1667rem + 1.8403vw, 4.05rem);
 
     /* Padding */
     --inline-padding-form: clamp(16px, 0.0458rem + 4.0712vw, 32px);
@@ -113,10 +114,6 @@ button {
     text-transform: uppercase;
 }
 
-button:hover {
-    cursor: pointer;
-}
-
 #char-length {
     grid-column: 1 / -1;
 }
@@ -139,19 +136,11 @@ button:hover {
     background-color: transparent;
     border: none;
     display: flex;
-    column-gap: var(--gap-copy);
     height: var(--copy-button-height);
-}
-#password.full + #copy {
-    column-gap: var(--gap-copy-small);
 }
 
 #copy svg {
     fill: var(--neon-green);
-}
-
-#copy:hover svg {
-    fill: var(--white);
 }
 
 @media (width < 23.4375rem) {
@@ -174,11 +163,22 @@ button:hover {
 }
 
 @media (min-width: 30rem) {
+    #copy {
+        position: relative;
+    }
+
     #copy::before {
         content: "COPIED";
         color: var(--neon-green);
+        pointer-events: none;
+        position: absolute;
+        left: calc(-1 * (var(--copied-width) + var(--gap-copy)));
         opacity: 0;
         transition: opacity 0.75s ease-out;
+    }
+
+    #password.full + #copy::before {
+        left: calc(-1 * (var(--copied-width) + var(--gap-copy-small)));
     }
     
     #copy.copied::before {
@@ -255,15 +255,6 @@ form {
     fill: var(--dark-grey);
 }
 
-#generate:hover {
-    color: var(--neon-green);
-    background-color: transparent;
-}
-
-#generate:hover svg {
-    fill: var(--neon-green);
-}
-
 h1 {
     font-size: var(--heading);
     color: var(--grey);
@@ -281,19 +272,11 @@ input {
     color: inherit;
 }
 
-input:hover {
-    cursor: pointer;
-}
-
 input[type="checkbox"] {
     appearance: none;
     height: var(--checkbox-size);
     width: var(--checkbox-size);
     border: var(--border) var(--almost-white);
-}
-
-input[type="checkbox"]:hover {
-    border-color: var(--neon-green);
 }
 
 input[type="checkbox"]:checked {
@@ -303,10 +286,6 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"] + label {
     user-select: none;
-}
-
-input[type="checkbox"] + label:hover {
-    cursor: pointer;
 }
 
 input[type="range"] {
@@ -342,15 +321,6 @@ input[type="range"]::-webkit-slider-thumb {
     border: none;
     height: var(--range-thumb-size);
     width: var(--range-thumb-size);
-}
-
-input[type="range"]:hover::-moz-range-thumb {
-    background-color: var(--very-dark-grey);
-    border: var(--border) var(--neon-green);
-}
-input[type="range"]:hover::-webkit-slider-thumb {
-    background-color: var(--very-dark-grey);
-    border: var(--border) var(--neon-green);
 }
 
 label {
@@ -413,4 +383,44 @@ output {
     align-items: center;
     column-gap: var(--gap-strength);
     padding: var(--padding-strength);
+}
+
+@media (hover: hover) {
+    button:hover {
+        cursor: pointer;
+    }
+
+    #copy:hover svg {
+        fill: var(--white);
+    }
+
+    #generate:hover {
+        color: var(--neon-green);
+        background-color: transparent;
+    }
+    
+    #generate:hover svg {
+        fill: var(--neon-green);
+    }
+
+    input:hover {
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:hover {
+        border-color: var(--neon-green);
+    }
+
+    input[type="checkbox"] + label:hover {
+        cursor: pointer;
+    }
+
+    input[type="range"]:hover::-moz-range-thumb {
+        background-color: var(--very-dark-grey);
+        border: var(--border) var(--neon-green);
+    }
+    input[type="range"]:hover::-webkit-slider-thumb {
+        background-color: var(--very-dark-grey);
+        border: var(--border) var(--neon-green);
+    }
 }
