@@ -44,6 +44,7 @@
     --range-thumb-size: 1.75rem;
     --gauge-height: 1.75rem;
     --gauge-width: 0.625rem;
+    --copy-button-height: clamp(1.25rem, 1.0115rem + 1.0178vw, 1.5rem);
 
     /* Padding */
     --inline-padding-form: clamp(16px, 0.0458rem + 4.0712vw, 32px);
@@ -121,6 +122,7 @@ button:hover {
     border: none;
     display: flex;
     column-gap: var(--gap-copy);
+    height: var(--copy-button-height);
 }
 #password.full + #copy {
     column-gap: var(--gap-copy-small);
