@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let {password, strength} = getNewPassword(DATA);
         PASSWORD_OUTPUT.value = password;
         setPasswordStrength(strength);
+        password.length < 20 ? PASSWORD_OUTPUT.classList.remove('full') : PASSWORD_OUTPUT.classList.add('full');
     }
 
     function passwordEntropy(length, characterRange) {
