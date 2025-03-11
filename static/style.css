@@ -136,11 +136,11 @@ button {
     background-color: transparent;
     border: none;
     display: flex;
-    height: var(--copy-button-height);
 }
 
 #copy svg {
     fill: var(--neon-green);
+    height: var(--copy-button-height);
 }
 
 @media (width < 23.4375rem) {
