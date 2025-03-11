@@ -369,6 +369,7 @@ main {
 .option {
     display: flex;
     column-gap: var(--gap-checkbox);
+    align-items: center;
 }
 
 output {
