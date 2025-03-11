@@ -35,6 +35,7 @@
     --gap-gauge: 8px;
     --gap-char-length: clamp(8px, 0.0229rem + 2.0356vw, 16px);
     --gap-copy: clamp(8px, 0.0229rem + 2.0356vw, 16px);
+    --gap-copy-small: 4px;
 
     /* Sizing */
     --main-width: clamp(320px, 100%, 33.75rem);
@@ -120,11 +121,8 @@ button:hover {
     display: flex;
     column-gap: var(--gap-copy);
 }
-
-#copy.copied::before {
-    content: "COPIED";
-    color: var(--neon-green);
-    transition: opacity 2s ease-out;
+#password.full + #copy {
+    column-gap: var(--gap-copy-small);
 }
 
 #copy svg {
@@ -133,6 +131,40 @@ button:hover {
 
 #copy:hover svg {
     fill: var(--white);
+}
+
+@media (width < 23.4375rem) {
+    #copy {
+        position: absolute;
+        right: 16px;
+        top: -40px;
+    }
+}
+
+
+@media (width < 30rem) {
+    #copy.copied svg {
+        fill: none;
+    }
+
+    #copy.copied {
+        background-color: var(--neon-green);
+        mask: no-repeat url("../assets/images/icon-check.svg") center/contain;
+    }
+}
+
+@media (min-width: 30rem) {
+    #copy::before {
+        content: "COPIED";
+        color: var(--neon-green);
+        opacity: 0;
+        transition: opacity 0.75s ease-out;
+    }
+    
+    #copy.copied::before {
+        opacity: 1;
+        transition: opacity 0s;
+    }
 }
 
 fieldset {
@@ -339,6 +371,7 @@ output {
     justify-content: space-between;
     align-items: center;
     padding-block: var(--block-padding-password);
+    position: relative;
 }
 
 #strength {
