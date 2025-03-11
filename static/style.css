@@ -25,6 +25,9 @@
     --body: clamp(1rem, 0.8807rem + 0.5089vw, 1.125rem);
     --strength: clamp(1.125rem, 0.7672rem + 1.5267vw, 1.5rem);
 
+    /* Line height */
+    --line-height: 1.33333;
+
     /* Gaps */
     --gap-main: clamp(16px, 0.1054rem + 3.8168vw, 31px);
     --gap-form: clamp(16px, 0.5229rem + 2.0356vw, 24px);
@@ -64,6 +67,7 @@
     /* Positioning */
     --copy-absolute-right: var(--inline-padding-form);
     --copy-absolute-top: calc(-1 * (var(--gap-main) + var(--copy-button-height)));
+    --translate-body: translateY(calc(-1 * (var(--line-height) * var(--heading))));
 
     /* Images */
     --check: url("../assets/images/icon-check.svg");
@@ -83,6 +87,7 @@ body {
     font-family: "JetBrains Mono", monospace;
     font-size: var(--body);
     font-weight: 700;
+    line-height: var(--line-height);
     text-transform: capitalize;
     background: var(--linear);
     color: var(--almost-white);
@@ -92,6 +97,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: var(--gap-main);
+}
+
+@media (min-width: 48rem) and (min-height: 64rem) {
+    body {
+        transform: var(--translate-body);
+    }
 }
 
 button {
@@ -385,7 +396,7 @@ output {
 
 #strength {
     font-size: var(--strength);
-    height: calc(1.33333 * var(--strength));
+    height: calc(var(--line-height) * var(--strength));
     display: flex;
     align-items: center;
 }
